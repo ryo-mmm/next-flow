@@ -1,0 +1,372 @@
+// ============================================================
+// Pricing Section
+// ============================================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.pricing {
+  @include section-padding;
+  background: $color-bg;
+  transition: background 0.4s ease;
+
+  .dark & {
+    background: $color-bg-dark;
+  }
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $space-10;
+  }
+
+  // --- Billing Toggle ---
+  &__toggle-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-12;
+  }
+
+  &__toggle-row {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+  }
+
+  &__toggle-label {
+    font-size: $fs-sm;
+    font-weight: $fw-medium;
+    color: $color-text-sub;
+    transition: color $transition-base;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+
+    &.active {
+      color: $color-text;
+      font-weight: $fw-semibold;
+
+      .dark & {
+        color: $color-text-dark;
+      }
+    }
+  }
+
+  &__toggle {
+    position: relative;
+    width: 56px;
+    height: 30px;
+    cursor: pointer;
+
+    &-input {
+      @include visually-hidden;
+    }
+
+    &-track {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: $radius-full;
+      background: $color-border;
+      transition: background $transition-base;
+      position: relative;
+
+      .dark & {
+        background: $color-border-dark;
+      }
+    }
+
+    &-input:checked + &-track {
+      background: $color-primary;
+    }
+
+    &-thumb {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: $shadow-sm;
+      transition: transform $transition-slow;
+    }
+
+    &-input:checked + &-track &-thumb {
+      transform: translateX(26px);
+    }
+  }
+
+  &__discount-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    padding: $space-1 $space-3 $space-1 $space-2;
+    border-radius: $radius-full;
+    background: rgba(#10B981, 0.12);
+    color: #10B981;
+    font-size: $fs-xs;
+    font-weight: $fw-semibold;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity $transition-base, transform $transition-base;
+
+    img {
+      width: 12px;
+      height: 12px;
+      display: block;
+      object-fit: contain;
+    }
+
+    &.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  // --- Plans Grid ---
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-6;
+    align-items: start;
+
+    @include mq(lg) {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+  }
+}
+
+// ============================================================
+// Plan Card
+// ============================================================
+
+.plan-card {
+  @include card;
+  padding: $space-8;
+  position: relative;
+  overflow: hidden;
+  transition: transform $transition-slow, box-shadow $transition-slow, border-color $transition-base;
+
+  &.reveal {
+    @include reveal-init;
+
+    &.is-visible {
+      @include reveal-active;
+    }
+  }
+
+  .dark & {
+    background: $color-bg-card-dark;
+    border-color: $color-border-dark;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-xl;
+  }
+
+  // Popular plan
+  &--popular {
+    border: 2px solid $color-primary;
+    box-shadow: $shadow-blue, $shadow-lg;
+
+    .dark & {
+      border-color: $color-primary;
+      box-shadow: 0 8px 40px rgba($color-primary, 0.25), $shadow-lg;
+    }
+
+    &:hover {
+      box-shadow: 0 16px 56px rgba($color-primary, 0.3), $shadow-xl;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba($color-primary, 0.04) 0%, rgba($color-accent-start, 0.04) 100%);
+      pointer-events: none;
+    }
+  }
+
+  &__popular-badge {
+    position: absolute;
+    top: -1px;
+    right: 24px;
+    padding: $space-1 $space-4;
+    background: $color-gradient-btn;
+    background-size: 200% auto;
+    color: #fff;
+    font-size: $fs-xs;
+    font-weight: $fw-semibold;
+    border-radius: 0 0 $radius-md $radius-md;
+    letter-spacing: 0.04em;
+  }
+
+  &__tier {
+    font-size: $fs-sm;
+    font-weight: $fw-semibold;
+    color: $color-text-sub;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $space-4;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+  }
+
+  &__price-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: $space-1;
+    margin-bottom: $space-2;
+    min-height: 60px;
+  }
+
+  &__currency {
+    font-size: $fs-xl;
+    font-weight: $fw-bold;
+    color: $color-text;
+    line-height: 1;
+    padding-bottom: 8px;
+
+    .dark & {
+      color: $color-text-dark;
+    }
+  }
+
+  &__amount {
+    font-size: $fs-5xl;
+    font-weight: $fw-bold;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: $color-text;
+
+    .dark & {
+      color: $color-text-dark;
+    }
+  }
+
+  &__period {
+    font-size: $fs-sm;
+    color: $color-text-sub;
+    font-weight: $fw-medium;
+    padding-bottom: 8px;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+  }
+
+  &__billing {
+    font-size: $fs-sm;
+    color: $color-text-sub;
+    margin-bottom: $space-6;
+    min-height: 20px;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+
+    &--saving {
+      color: #10B981;
+      font-weight: $fw-semibold;
+    }
+  }
+
+  &__divider {
+    height: 1px;
+    background: $color-border;
+    margin-bottom: $space-6;
+
+    .dark & {
+      background: $color-border-dark;
+    }
+  }
+
+  &__features {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    margin-bottom: $space-8;
+  }
+
+  &__feature {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-3;
+    font-size: $fs-sm;
+    color: $color-text;
+    line-height: 1.5;
+
+    .dark & {
+      color: $color-text-dark;
+    }
+
+    &-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      @include flex-center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 10px;
+
+      &--check {
+        background: rgba($color-primary, 0.12);
+        color: $color-primary;
+      }
+      &--cross {
+        background: rgba($color-text-sub, 0.08);
+        color: $color-text-sub;
+      }
+    }
+  }
+
+  &__cta {
+    @include btn-base;
+    width: 100%;
+    padding: $space-4;
+
+    &--outline {
+      background: transparent;
+      border: 1.5px solid $color-border;
+      color: $color-text;
+
+      .dark & {
+        border-color: $color-border-dark;
+        color: $color-text-dark;
+      }
+
+      &:hover {
+        border-color: $color-primary;
+        color: $color-primary;
+        transform: translateY(-2px);
+      }
+    }
+
+    &--primary {
+      background: $color-gradient-btn;
+      background-size: 200% auto;
+      background-position: left center;
+      color: #fff;
+      box-shadow: $shadow-blue;
+
+      &:hover {
+        background-position: right center;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 36px rgba($color-primary, 0.4);
+      }
+    }
+  }
+}

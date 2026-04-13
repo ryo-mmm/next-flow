@@ -1,0 +1,209 @@
+// ============================================================
+// Footer
+// ============================================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.footer {
+  background: $color-text;
+  color: rgba(#fff, 0.7);
+  padding-block: $space-16 $space-8;
+  transition: background 0.4s ease;
+
+  .dark & {
+    background: #070B14;
+  }
+
+  &__inner {
+    @include container;
+  }
+
+  &__top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: $space-10;
+    padding-bottom: $space-12;
+    border-bottom: 1px solid rgba(#fff, 0.1);
+
+    @include mq(lg) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include mq(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: $fs-lg;
+    font-weight: $fw-bold;
+    color: #fff;
+
+    &-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: $radius-md;
+      background: $color-gradient-btn;
+      background-size: 200% auto;
+      @include flex-center;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        color: #fff;
+      }
+    }
+  }
+
+  &__tagline {
+    font-size: $fs-sm;
+    line-height: 1.7;
+    max-width: 280px;
+  }
+
+  &__socials {
+    display: flex;
+    gap: $space-3;
+    margin-top: $space-2;
+  }
+
+  &__social-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-md;
+    background: rgba(#fff, 0.08);
+    @include flex-center;
+    color: rgba(#fff, 0.7);
+    font-size: 16px;
+    transition: background $transition-base, color $transition-base;
+
+    &:hover {
+      background: $color-primary;
+      color: #fff;
+    }
+  }
+
+  &__col-title {
+    font-size: $fs-sm;
+    font-weight: $fw-semibold;
+    color: #fff;
+    margin-bottom: $space-5;
+    letter-spacing: 0.04em;
+  }
+
+  &__col-links {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+  }
+
+  &__col-link {
+    font-size: $fs-sm;
+    color: rgba(#fff, 0.6);
+    transition: color $transition-base;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: $space-8;
+    gap: $space-4;
+    flex-wrap: wrap;
+  }
+
+  &__copy {
+    font-size: $fs-sm;
+  }
+
+  &__legal {
+    display: flex;
+    gap: $space-5;
+  }
+
+  &__legal-link {
+    font-size: $fs-sm;
+    color: rgba(#fff, 0.6);
+    transition: color $transition-base;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+// ============================================================
+// CTA Banner (before footer)
+// ============================================================
+
+.cta-banner {
+  background: linear-gradient(135deg, $color-primary 0%, $color-accent-start 100%);
+  padding-block: $space-20;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 20% 50%, rgba(#fff, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 80% 50%, rgba(#fff, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  &__inner {
+    @include container;
+    position: relative;
+  }
+
+  &__title {
+    font-size: $fs-4xl;
+    font-weight: $fw-bold;
+    color: #fff;
+    letter-spacing: -0.03em;
+    margin-bottom: $space-4;
+
+    @include mq(md) {
+      font-size: $fs-2xl;
+    }
+  }
+
+  &__sub {
+    font-size: $fs-md;
+    color: rgba(#fff, 0.85);
+    max-width: 480px;
+    margin-inline: auto;
+    margin-bottom: $space-8;
+    line-height: 1.7;
+  }
+
+  &__btn {
+    @include btn-base;
+    padding: $space-4 $space-10;
+    font-size: $fs-md;
+    background: #fff;
+    color: $color-primary;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+    }
+  }
+}

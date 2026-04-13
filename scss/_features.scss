@@ -1,0 +1,189 @@
+// ============================================================
+// Features Section
+// ============================================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.features {
+  @include section-padding;
+  background: $color-bg;
+  transition: background 0.4s ease;
+
+  .dark & {
+    background: $color-bg-dark;
+  }
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $space-16;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-6;
+
+    @include mq(lg) {
+      grid-template-columns: 1fr;
+      max-width: 560px;
+      margin-inline: auto;
+    }
+  }
+}
+
+// ============================================================
+// Feature Card
+// ============================================================
+
+.feature-card {
+  @include card;
+  padding: $space-8;
+  position: relative;
+  overflow: hidden;
+
+  // Scroll reveal — initial state
+  &.reveal {
+    @include reveal-init;
+
+    &.is-visible {
+      @include reveal-active;
+    }
+
+    &--left  { transform: translateX(-48px); }
+    &--right { transform: translateX(48px); }
+    &--up    { transform: translateY(48px); }
+
+    &--left.is-visible,
+    &--right.is-visible,
+    &--up.is-visible {
+      transform: translate(0);
+    }
+  }
+
+  // Subtle gradient overlay
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: $color-gradient-card;
+    opacity: 0;
+    transition: opacity $transition-slow;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .dark & {
+    background: $color-bg-card-dark;
+    border-color: $color-border-dark;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-xl;
+
+    &::before {
+      opacity: 1;
+    }
+
+    .feature-card__icon-wrap {
+      transform: scale(1.1) rotate(-4deg);
+      box-shadow: 0 12px 32px rgba($color-primary, 0.3);
+    }
+  }
+
+  &__icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: $radius-xl;
+    @include flex-center;
+    margin-bottom: $space-6;
+    transition: transform $transition-slow, box-shadow $transition-slow;
+    position: relative;
+    z-index: 1;
+
+    img {
+      width: 26px;
+      height: 26px;
+      display: block;
+      object-fit: contain;
+    }
+
+    &--blue {
+      background: linear-gradient(135deg, rgba($color-primary, 0.15) 0%, rgba($color-primary, 0.05) 100%);
+      color: $color-primary;
+    }
+    &--purple {
+      background: linear-gradient(135deg, rgba($color-accent-start, 0.15) 0%, rgba($color-accent-start, 0.05) 100%);
+      color: $color-accent-start;
+    }
+    &--teal {
+      background: linear-gradient(135deg, rgba(#0AB5A8, 0.15) 0%, rgba(#0AB5A8, 0.05) 100%);
+      color: #0AB5A8;
+    }
+  }
+
+  &__title {
+    font-size: $fs-xl;
+    font-weight: $fw-bold;
+    margin-bottom: $space-3;
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
+
+    .dark & {
+      color: $color-text-dark;
+    }
+  }
+
+  &__desc {
+    font-size: $fs-base;
+    color: $color-text-sub;
+    line-height: 1.75;
+    position: relative;
+    z-index: 1;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    margin-top: $space-5;
+    padding: $space-1 $space-3;
+    border-radius: $radius-full;
+    font-size: $fs-xs;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.03em;
+    position: relative;
+    z-index: 1;
+
+    &--blue {
+      background: rgba($color-primary, 0.10);
+      color: $color-primary;
+    }
+    &--purple {
+      background: rgba($color-accent-start, 0.10);
+      color: $color-accent-start;
+    }
+    &--teal {
+      background: rgba(#0AB5A8, 0.10);
+      color: #0AB5A8;
+    }
+  }
+
+  // Delay classes for staggered animation
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      transition-delay: #{($i - 1) * 0.1}s;
+    }
+  }
+}

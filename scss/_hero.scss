@@ -1,0 +1,529 @@
+// ============================================================
+// Hero Section
+// ============================================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.hero {
+  min-height: 100svh;
+  padding-top: calc(#{$nav-height} + #{$space-16});
+  padding-bottom: $space-24;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+
+  // Mesh gradient background
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 70% 40%, rgba($color-primary, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba($color-accent-start, 0.07) 0%, transparent 60%);
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+
+    .dark & {
+      background:
+        radial-gradient(ellipse 70% 60% at 70% 40%, rgba($color-primary, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba($color-accent-start, 0.12) 0%, transparent 60%);
+    }
+  }
+
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: $space-12;
+    position: relative;
+
+    @include mq(lg) {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+
+  &__content {
+    @include mq(lg) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    padding: $space-1 $space-3 $space-1 $space-2;
+    border-radius: $radius-full;
+    background: rgba($color-primary, 0.10);
+    border: 1px solid rgba($color-primary, 0.20);
+    font-size: $fs-xs;
+    font-weight: $fw-semibold;
+    color: $color-primary;
+    letter-spacing: 0.03em;
+    margin-bottom: $space-6;
+    animation: fadeInDown 0.7s ease both;
+
+    .dark & {
+      background: rgba($color-primary, 0.18);
+      border-color: rgba($color-primary, 0.30);
+    }
+
+    &-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: $color-primary;
+      animation: pulse 2s ease infinite;
+    }
+  }
+
+  &__headline {
+    font-size: clamp(2.2rem, 4.5vw, $fs-5xl);
+    font-weight: $fw-bold;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    margin-bottom: $space-6;
+    animation: fadeInUp 0.7s 0.1s ease both;
+
+    &-grad {
+      @include gradient-text;
+      display: block;
+    }
+  }
+
+  &__sub {
+    font-size: $fs-md;
+    color: $color-text-sub;
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: $space-8;
+    animation: fadeInUp 0.7s 0.2s ease both;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.7s 0.3s ease both;
+
+    @include mq(lg) {
+      justify-content: center;
+    }
+  }
+
+  &__cta-primary {
+    @include btn-base;
+    padding: $space-4 $space-8;
+    font-size: $fs-md;
+    background: $color-gradient-btn;
+    background-size: 200% auto;
+    background-position: left center;
+    color: #fff;
+    box-shadow: $shadow-blue;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity $transition-base;
+    }
+
+    &:hover {
+      background-position: right center;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba($color-primary, 0.4);
+
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+
+  &__cta-secondary {
+    @include btn-base;
+    padding: $space-4 $space-8;
+    font-size: $fs-md;
+    background: transparent;
+    color: $color-text;
+    border: 1.5px solid $color-border;
+
+    .dark & {
+      color: $color-text-dark;
+      border-color: $color-border-dark;
+    }
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+      transform: translateY(-2px);
+    }
+  }
+
+  &__trust {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    margin-top: $space-8;
+    animation: fadeInUp 0.7s 0.4s ease both;
+    font-size: $fs-sm;
+    color: $color-text-sub;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+
+    @include mq(lg) {
+      justify-content: center;
+    }
+
+    &-avatars {
+      display: flex;
+
+      span {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid $color-bg;
+        background: $color-gradient-btn;
+        background-size: 200% auto;
+        @include flex-center;
+        color: #fff;
+        font-size: 11px;
+        font-weight: $fw-bold;
+        margin-left: -8px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        .dark & {
+          border-color: $color-bg-dark;
+        }
+      }
+    }
+
+    &-stars {
+      color: #F59E0B;
+      letter-spacing: 1px;
+    }
+  }
+
+  // --- Right: App Mockup ---
+  &__visual {
+    animation: fadeInRight 0.8s 0.2s cubic-bezier(0.22,1,0.36,1) both;
+
+    @include mq(lg) {
+      max-width: 560px;
+      margin-inline: auto;
+      width: 100%;
+    }
+  }
+}
+
+// ============================================================
+// Browser Window Mockup
+// ============================================================
+
+.browser-mockup {
+  background: $color-bg-card;
+  border-radius: $radius-2xl;
+  box-shadow: $shadow-xl,
+              0 0 0 1px $color-border,
+              inset 0 1px 0 rgba(255,255,255,0.8);
+  overflow: hidden;
+  position: relative;
+
+  .dark & {
+    background: $color-bg-card-dark;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5),
+                0 0 0 1px $color-border-dark;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    padding: $space-3 $space-4;
+    background: rgba($color-bg, 0.6);
+    border-bottom: 1px solid $color-border;
+
+    .dark & {
+      background: rgba(#0D1525, 0.8);
+      border-bottom-color: $color-border-dark;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    gap: $space-2;
+  }
+
+  &__dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+
+    &--red    { background: #FF5F57; }
+    &--yellow { background: #FFBD2E; }
+    &--green  { background: #28CA41; }
+  }
+
+  &__url {
+    flex: 1;
+    background: rgba($color-border, 0.6);
+    border-radius: $radius-full;
+    padding: $space-1 $space-3;
+    font-size: 11px;
+    color: $color-text-sub;
+    font-family: $font-base;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .dark & {
+      background: rgba($color-border-dark, 0.6);
+      color: $color-text-sub-dark;
+    }
+  }
+
+  &__content {
+    padding: $space-5;
+  }
+}
+
+// ============================================================
+// App UI Mock (inside browser)
+// ============================================================
+
+.app-ui {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: $space-4;
+  min-height: 320px;
+
+  @include mq(sm) {
+    grid-template-columns: 1fr;
+  }
+
+  &__sidebar {
+    background: rgba($color-bg, 0.6);
+    border-radius: $radius-lg;
+    padding: $space-4;
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+
+    .dark & {
+      background: rgba(#0A0E1A, 0.6);
+    }
+
+    @include mq(sm) {
+      display: none;
+    }
+  }
+
+  &__nav-item {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    padding: $space-2 $space-3;
+    border-radius: $radius-md;
+    font-size: 12px;
+    font-weight: $fw-medium;
+    color: $color-text-sub;
+    cursor: pointer;
+    transition: all $transition-base;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+
+    &.active {
+      background: rgba($color-primary, 0.12);
+      color: $color-primary;
+    }
+
+    &__icon {
+      width: 14px;
+      height: 14px;
+      display: block;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $space-1;
+  }
+
+  &__title {
+    font-size: $fs-base;
+    font-weight: $fw-semibold;
+    color: $color-text;
+
+    .dark & {
+      color: $color-text-dark;
+    }
+  }
+
+  &__add-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: $radius-md;
+    background: $color-gradient-btn;
+    @include flex-center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: $fw-bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba($color-primary, 0.35);
+  }
+
+  &__task {
+    background: $color-bg-card;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: $space-3 $space-4;
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    transition: all $transition-base;
+
+    .dark & {
+      background: rgba($color-bg-card-dark, 0.7);
+      border-color: $color-border-dark;
+    }
+
+    &:hover {
+      border-color: $color-primary;
+      box-shadow: 0 2px 12px rgba($color-primary, 0.12);
+    }
+
+    &__check {
+      width: 16px;
+      height: 16px;
+      border-radius: $radius-sm;
+      border: 2px solid $color-border;
+      flex-shrink: 0;
+      transition: all $transition-base;
+
+      .dark & {
+        border-color: $color-border-dark;
+      }
+
+      &.done {
+        background: $color-primary;
+        border-color: $color-primary;
+        position: relative;
+
+        &::after {
+          content: '✓';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #fff;
+          font-size: 9px;
+        }
+      }
+    }
+
+    &__text {
+      flex: 1;
+      font-size: 12px;
+      font-weight: $fw-medium;
+      color: $color-text;
+
+      .dark & {
+        color: $color-text-dark;
+      }
+
+      &.done {
+        text-decoration: line-through;
+        color: $color-text-sub;
+
+        .dark & {
+          color: $color-text-sub-dark;
+        }
+      }
+    }
+
+    &__priority {
+      font-size: 10px;
+      font-weight: $fw-semibold;
+      padding: 2px 8px;
+      border-radius: $radius-full;
+
+      &--high   { background: rgba(#EF4444, 0.12); color: #EF4444; }
+      &--mid    { background: rgba(#F59E0B, 0.12); color: #F59E0B; }
+      &--low    { background: rgba(#10B981, 0.12); color: #10B981; }
+      &--ai     { background: rgba($color-primary, 0.12); color: $color-primary; }
+    }
+
+    &__ai-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 10px;
+      color: $color-accent-start;
+      background: rgba($color-accent-start, 0.10);
+      padding: 2px 6px;
+      border-radius: $radius-full;
+      font-weight: $fw-semibold;
+    }
+  }
+
+  &__ai-chip {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    padding: $space-3 $space-4;
+    background: $color-gradient-card;
+    border: 1px solid rgba($color-primary, 0.15);
+    border-radius: $radius-lg;
+    font-size: 11px;
+    color: $color-primary;
+    font-weight: $fw-medium;
+
+    .dark & {
+      background: rgba($color-primary, 0.08);
+      border-color: rgba($color-primary, 0.20);
+    }
+
+    &__icon {
+      width: 14px;
+      height: 14px;
+      display: block;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+// ============================================================
+// NextFlow AI — Main Stylesheet
+// ============================================================
+
+// Google Fonts (loaded via HTML)
+// Inter + Noto Sans JP
+
+// Core
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Partials
+@use 'animations';
+@use 'base';
+@use 'nav';
+@use 'hero';
+@use 'features';
+@use 'efficiency';
+@use 'pricing';
+@use 'faq';
+@use 'footer';
+
+// ============================================================
+// Utility Classes
+// ============================================================
+
+.container {
+  @include container;
+}
+
+.text-gradient {
+  @include gradient-text;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// delay utilities for stagger
+@for $i from 1 through 8 {
+  .delay-#{$i} {
+    transition-delay: #{($i - 1) * 0.12}s !important;
+  }
+}

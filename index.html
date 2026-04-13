@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextFlow AI — 思考を止めない、タスク管理。</title>
+  <meta name="description" content="入力したメモからタスクを自動生成し、優先順位をAIが提案。複雑な設定不要で、直感的に使えるAIタスク管理ツール。" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav class="nav" role="navigation" aria-label="メインナビゲーション">
+  <div class="nav__inner">
+
+    <!-- Logo -->
+    <a href="#" class="nav__logo" aria-label="NextFlow AI ホームへ">
+      <div class="nav__logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </div>
+      <span class="nav__logo-text">NextFlow AI</span>
+    </a>
+
+    <!-- Links -->
+    <ul class="nav__links" role="list">
+      <li><a href="#features">機能</a></li>
+      <li><a href="#efficiency">導入効果</a></li>
+      <li><a href="#pricing">料金</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+
+    <!-- Actions -->
+    <div class="nav__actions">
+      <!-- Dark Mode Toggle -->
+      <label class="dark-toggle" aria-label="ダークモード切り替え" title="ダークモード切り替え">
+        <input type="checkbox" class="dark-toggle__input" id="darkToggle" role="switch" aria-checked="false" />
+        <span class="dark-toggle__track" aria-hidden="true">
+          <span class="dark-toggle__thumb">
+            <img class="dark-toggle__icon" id="darkIcon" src="img/icon-sun.svg" alt="" width="12" height="12" />
+          </span>
+        </span>
+      </label>
+
+      <a href="#pricing" class="nav__cta">無料で始める</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- ============================================================
+     HERO SECTION
+============================================================ -->
+<section class="hero" id="hero" aria-labelledby="hero-headline">
+  <div class="hero__inner">
+
+    <!-- Left: Copy & CTA -->
+    <div class="hero__content">
+
+      <div class="hero__badge">
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        AIタスク管理の新標準
+      </div>
+
+      <h1 class="hero__headline" id="hero-headline">
+        思考を止めない、<br>
+        <span class="hero__headline-grad">タスク管理。</span>
+      </h1>
+
+      <p class="hero__sub">
+        AIがあなたの専属秘書に。<br>
+        メモを入力するだけで、タスクの自動生成・優先順位付け・スケジュール最適化まで、すべておまかせ。
+      </p>
+
+      <div class="hero__actions">
+        <a href="#pricing" class="hero__cta-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          無料で始める
+        </a>
+        <a href="#features" class="hero__cta-secondary">
+          機能を見る →
+        </a>
+      </div>
+
+      <div class="hero__trust" aria-label="ユーザー実績">
+        <div class="hero__trust-avatars" aria-hidden="true">
+          <span>T</span><span>S</span><span>K</span><span>M</span>
+        </div>
+        <div>
+          <span class="hero__trust-stars" aria-label="5つ星">★★★★★</span>
+          <span>&nbsp;2,400+ ユーザーが利用中</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right: App Mockup -->
+    <div class="hero__visual" aria-hidden="true">
+      <div class="browser-mockup">
+
+        <!-- Browser bar -->
+        <div class="browser-mockup__bar">
+          <div class="browser-mockup__dots">
+            <span class="browser-mockup__dot browser-mockup__dot--red"></span>
+            <span class="browser-mockup__dot browser-mockup__dot--yellow"></span>
+            <span class="browser-mockup__dot browser-mockup__dot--green"></span>
+          </div>
+          <div class="browser-mockup__url">app.nextflow.ai/dashboard</div>
+        </div>
+
+        <!-- App content -->
+        <div class="browser-mockup__content">
+          <div class="app-ui">
+
+            <!-- Sidebar -->
+            <div class="app-ui__sidebar">
+              <div class="app-ui__nav-item active">
+                <img class="app-ui__nav-item__icon" src="img/icon-bolt.svg" alt="" width="14" height="14" />
+                ダッシュボード
+              </div>
+              <div class="app-ui__nav-item">
+                <img class="app-ui__nav-item__icon" src="img/icon-list.svg" alt="" width="14" height="14" />
+                タスク一覧
+              </div>
+              <div class="app-ui__nav-item">
+                <img class="app-ui__nav-item__icon" src="img/icon-calendar.svg" alt="" width="14" height="14" />
+                カレンダー
+              </div>
+              <div class="app-ui__nav-item">
+                <img class="app-ui__nav-item__icon" src="img/icon-cpu.svg" alt="" width="14" height="14" />
+                AI提案
+              </div>
+              <div class="app-ui__nav-item">
+                <img class="app-ui__nav-item__icon" src="img/icon-settings.svg" alt="" width="14" height="14" />
+                設定
+              </div>
+            </div>
+
+            <!-- Main panel -->
+            <div class="app-ui__main">
+              <div class="app-ui__header">
+                <div class="app-ui__title">今日のタスク</div>
+                <div class="app-ui__add-btn" title="タスクを追加">+</div>
+              </div>
+
+              <!-- AI suggestion chip -->
+              <div class="app-ui__ai-chip">
+                <img class="app-ui__ai-chip__icon" src="img/icon-sparkle.svg" alt="" width="14" height="14" />
+                AIが3件のタスクを自動生成しました
+              </div>
+
+              <!-- Task list -->
+              <div class="app-ui__task">
+                <div class="app-ui__task__check done"></div>
+                <div class="app-ui__task__text done">クライアントへの週次レポート送付</div>
+                <span class="app-ui__task__priority app-ui__task__priority--ai">AI生成</span>
+              </div>
+
+              <div class="app-ui__task">
+                <div class="app-ui__task__check"></div>
+                <div class="app-ui__task__text">新機能のデザインレビュー</div>
+                <span class="app-ui__task__priority app-ui__task__priority--high">優先</span>
+              </div>
+
+              <div class="app-ui__task">
+                <div class="app-ui__task__check"></div>
+                <div class="app-ui__task__text">ミーティング議事録の整理・共有</div>
+                <span class="app-ui__task__priority app-ui__task__priority--mid">中</span>
+              </div>
+
+              <div class="app-ui__task">
+                <div class="app-ui__task__check"></div>
+                <div class="app-ui__task__text">請求書の作成・送付（3件）</div>
+                <span class="app-ui__task__priority app-ui__task__priority--low">低</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FEATURES SECTION
+============================================================ -->
+<section class="features" id="features" aria-labelledby="features-title">
+  <div class="features__inner">
+
+    <div class="features__header">
+      <p class="section-label" aria-label="セクション">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        AI機能の可視化
+      </p>
+      <h2 class="section-title" id="features-title">
+        3つのコア機能で、<br>
+        <span class="text-gradient">仕事の流れが変わる</span>
+      </h2>
+      <p class="section-sub" style="margin-inline:auto; text-align:center; margin-top:1rem;">
+        複雑な設定は一切不要。メモを投げ込むだけで、AIが後工程をすべて引き受けます。
+      </p>
+    </div>
+
+    <div class="features__grid">
+
+      <!-- Card 1 -->
+      <article class="feature-card reveal reveal--left delay-1">
+        <div class="feature-card__icon-wrap feature-card__icon-wrap--blue" aria-hidden="true">
+          <img src="img/icon-wand.svg" alt="" width="26" height="26" />
+        </div>
+        <h3 class="feature-card__title">タスク自動生成</h3>
+        <p class="feature-card__desc">
+          思いついたことをメモするだけ。AIがコンテキストを読み取り、アクション可能なタスクへと自動変換します。書き忘れ・抜け漏れをゼロに。
+        </p>
+        <span class="feature-card__badge feature-card__badge--blue">
+          ✦ GPT-4o 搭載
+        </span>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="feature-card reveal reveal--up delay-2">
+        <div class="feature-card__icon-wrap feature-card__icon-wrap--purple" aria-hidden="true">
+          <img src="img/icon-schedule.svg" alt="" width="26" height="26" />
+        </div>
+        <h3 class="feature-card__title">スケジュール最適化</h3>
+        <p class="feature-card__desc">
+          締め切り・重要度・あなたの作業リズムを学習し、最適な順序でタスクをスケジューリング。「何から手をつけよう？」に悩む時間がなくなります。
+        </p>
+        <span class="feature-card__badge feature-card__badge--purple">
+          ✦ アダプティブAI
+        </span>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="feature-card reveal reveal--right delay-3">
+        <div class="feature-card__icon-wrap feature-card__icon-wrap--teal" aria-hidden="true">
+          <img src="img/icon-bell.svg" alt="" width="26" height="26" />
+        </div>
+        <h3 class="feature-card__title">スマート通知</h3>
+        <p class="feature-card__desc">
+          通知の嵐にうんざりしていませんか？NextFlowは「今、本当に大切なこと」だけを伝えます。集中モード中は自動でサイレントに切り替え。
+        </p>
+        <span class="feature-card__badge feature-card__badge--teal">
+          ✦ 集中モード対応
+        </span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     EFFICIENCY SECTION
+============================================================ -->
+<section class="efficiency" id="efficiency" aria-labelledby="efficiency-title">
+  <div class="efficiency__inner">
+
+    <div class="efficiency__header">
+      <p class="section-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        導入効果
+      </p>
+      <h2 class="section-title" id="efficiency-title">数字で証明する、<span class="text-gradient">NextFlowの効果</span></h2>
+    </div>
+
+    <div class="efficiency__layout">
+
+      <!-- Stats grid -->
+      <div class="efficiency__stats">
+
+        <div class="efficiency__stat-card reveal delay-1">
+          <div class="efficiency__stat-number" data-counter data-target="5" data-suffix="h">
+            5h
+          </div>
+          <div class="efficiency__stat-label">週あたりの<br>管理時間削減</div>
+        </div>
+
+        <div class="efficiency__stat-card reveal delay-2">
+          <div class="efficiency__stat-number efficiency__stat-number--accent" data-counter data-target="92" data-suffix="%">
+            92%
+          </div>
+          <div class="efficiency__stat-label">ユーザー満足度</div>
+        </div>
+
+        <div class="efficiency__stat-card reveal delay-3">
+          <div class="efficiency__stat-number" data-counter data-target="3.2" data-suffix="x">
+            3.2x
+          </div>
+          <div class="efficiency__stat-label">タスク処理速度の<br>向上</div>
+        </div>
+
+        <div class="efficiency__stat-card reveal delay-4">
+          <div class="efficiency__stat-number efficiency__stat-number--accent" data-counter data-target="2400" data-suffix="+">
+            2400+
+          </div>
+          <div class="efficiency__stat-label">アクティブ<br>ユーザー数</div>
+        </div>
+
+      </div>
+
+      <!-- Right content -->
+      <div class="efficiency__content reveal">
+        <h3 class="efficiency__tagline">
+          管理に使う時間を、<br>
+          <span>創造に使おう。</span>
+        </h3>
+        <p class="efficiency__desc">
+          NextFlow導入後、ユーザーは平均して週5時間のタスク管理時間を削減。浮いた時間でアイデアを磨き、クライアントとの対話に集中できています。
+        </p>
+
+        <ul class="efficiency__items" role="list">
+          <li class="efficiency__item">
+            <div class="efficiency__item-icon efficiency__item-icon--blue" aria-hidden="true">
+              <img src="img/icon-zap.svg" alt="" width="18" height="18" />
+            </div>
+            <div class="efficiency__item-text">
+              <div class="efficiency__item-title">セットアップ2分以内</div>
+              <div class="efficiency__item-desc">アカウント作成からタスク自動生成まで、難しい設定は一切なし。</div>
+            </div>
+          </li>
+          <li class="efficiency__item">
+            <div class="efficiency__item-icon efficiency__item-icon--purple" aria-hidden="true">
+              <img src="img/icon-brain.svg" alt="" width="18" height="18" />
+            </div>
+            <div class="efficiency__item-text">
+              <div class="efficiency__item-title">あなたに合わせて賢くなる</div>
+              <div class="efficiency__item-desc">使えば使うほどAIがあなたの仕事スタイルを学習し、提案精度が向上。</div>
+            </div>
+          </li>
+          <li class="efficiency__item">
+            <div class="efficiency__item-icon efficiency__item-icon--teal" aria-hidden="true">
+              <img src="img/icon-link.svg" alt="" width="18" height="18" />
+            </div>
+            <div class="efficiency__item-text">
+              <div class="efficiency__item-title">既存ツールと連携</div>
+              <div class="efficiency__item-desc">Notion・Slack・Google Calendarと連携。今のワークフローを壊しません。</div>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Bar chart (horizontal) -->
+        <div class="efficiency__chart">
+          <p class="efficiency__chart-title">管理業務にかかる時間（週）</p>
+
+          <div class="efficiency__chart-rows">
+            <div class="efficiency__chart-row">
+              <span class="efficiency__chart-row-label">導入前</span>
+              <div class="efficiency__chart-row-track">
+                <div class="efficiency__chart-row-bar efficiency__chart-row-bar--before" data-width="100"></div>
+              </div>
+              <span class="efficiency__chart-row-value">約8h</span>
+            </div>
+            <div class="efficiency__chart-row">
+              <span class="efficiency__chart-row-label">導入後</span>
+              <div class="efficiency__chart-row-track">
+                <div class="efficiency__chart-row-bar efficiency__chart-row-bar--after" data-width="37.5"></div>
+              </div>
+              <span class="efficiency__chart-row-value efficiency__chart-row-value--accent">約3h</span>
+            </div>
+          </div>
+
+          <div class="efficiency__chart-note" aria-hidden="true">
+            <span class="efficiency__chart-note-badge">▼ 62.5% 削減</span>
+            <span>週あたり5時間を創造的な作業へ</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PRICING SECTION
+============================================================ -->
+<section class="pricing" id="pricing" aria-labelledby="pricing-title">
+  <div class="pricing__inner">
+
+    <div class="pricing__header">
+      <p class="section-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        料金プラン
+      </p>
+      <h2 class="section-title" id="pricing-title">
+        シンプルな<span class="text-gradient">料金体系</span>
+      </h2>
+      <p class="section-sub" style="margin-inline:auto; text-align:center; margin-top:1rem;">
+        無料プランからはじめて、必要になったらアップグレード。いつでも解約できます。
+      </p>
+    </div>
+
+    <!-- Billing Toggle -->
+    <div class="pricing__toggle-wrap">
+      <div class="pricing__toggle-row">
+        <span class="pricing__toggle-label active" id="labelMonthly">月払い</span>
+
+        <label class="pricing__toggle" aria-label="年払いに切り替え">
+          <input type="checkbox" class="pricing__toggle-input" id="billingToggle" role="switch" aria-checked="false" />
+          <span class="pricing__toggle-track">
+            <span class="pricing__toggle-thumb"></span>
+          </span>
+        </label>
+
+        <span class="pricing__toggle-label" id="labelYearly">年払い</span>
+      </div>
+      <span class="pricing__discount-badge" id="discountBadge" aria-live="polite">
+        <img src="img/icon-tag.svg" alt="" width="12" height="12" />
+        最大20% OFF
+      </span>
+    </div>
+
+    <!-- Plan cards -->
+    <div class="pricing__grid">
+
+      <!-- Free plan -->
+      <div class="plan-card reveal delay-1">
+        <div class="plan-card__tier">Free</div>
+        <div class="plan-card__price-wrap">
+          <span class="plan-card__currency">¥</span>
+          <span class="plan-card__amount" aria-live="polite">0</span>
+          <span class="plan-card__period">/月</span>
+        </div>
+        <p class="plan-card__billing">ずっと無料</p>
+        <div class="plan-card__divider"></div>
+        <ul class="plan-card__features" role="list">
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            AIタスク生成（月50件まで）
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            基本スケジューリング
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            Webブラウザ版
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--cross" aria-hidden="true">✕</span>
+            モバイルアプリ
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--cross" aria-hidden="true">✕</span>
+            外部ツール連携
+          </li>
+        </ul>
+        <a href="#" class="plan-card__cta plan-card__cta--outline">無料で始める</a>
+      </div>
+
+      <!-- Pro plan (popular) -->
+      <div class="plan-card plan-card--popular reveal delay-2">
+        <div class="plan-card__popular-badge">人気No.1</div>
+        <div class="plan-card__tier">Pro</div>
+        <div class="plan-card__price-wrap">
+          <span class="plan-card__currency">¥</span>
+          <span class="plan-card__amount" aria-live="polite">1,480</span>
+          <span class="plan-card__period">/月</span>
+        </div>
+        <p class="plan-card__billing">月額払い · いつでも解約可</p>
+        <div class="plan-card__divider"></div>
+        <ul class="plan-card__features" role="list">
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            AIタスク生成（無制限）
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            優先度の自動最適化
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            iOS / Android アプリ
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            Slack・Notion連携
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            スマート通知（集中モード）
+          </li>
+        </ul>
+        <a href="#" class="plan-card__cta plan-card__cta--primary">今すぐ始める</a>
+      </div>
+
+      <!-- Team plan -->
+      <div class="plan-card reveal delay-3">
+        <div class="plan-card__tier">Team</div>
+        <div class="plan-card__price-wrap">
+          <span class="plan-card__currency">¥</span>
+          <span class="plan-card__amount" aria-live="polite">4,280</span>
+          <span class="plan-card__period">/月</span>
+        </div>
+        <p class="plan-card__billing">月額払い · いつでも解約可</p>
+        <div class="plan-card__divider"></div>
+        <ul class="plan-card__features" role="list">
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            Proの全機能
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            チームメンバー最大10名
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            プロジェクト共有・コラボ
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            管理者ダッシュボード
+          </li>
+          <li class="plan-card__feature">
+            <span class="plan-card__feature-icon plan-card__feature-icon--check" aria-hidden="true">✓</span>
+            優先サポート
+          </li>
+        </ul>
+        <a href="#" class="plan-card__cta plan-card__cta--outline">チームで始める</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FAQ SECTION
+============================================================ -->
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="faq__inner">
+
+    <div class="faq__header">
+      <p class="section-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        よくある質問
+      </p>
+      <h2 class="section-title" id="faq-title">
+        気になることを<span class="text-gradient">まとめました</span>
+      </h2>
+    </div>
+
+    <ul class="faq__list" role="list">
+
+      <!-- Item 1 -->
+      <li class="faq-item reveal delay-1">
+        <div class="faq-item__header" role="button" tabindex="0" aria-expanded="false">
+          <span class="faq-item__question">無料プランと有料プランの違いは何ですか？</span>
+          <span class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="faq-item__body" role="region">
+          <p class="faq-item__answer">
+            無料プランはAIタスク生成が月50件までに制限されており、モバイルアプリや外部ツール連携は対応しておりません。有料のProプランではAIタスク生成が無制限となり、iOSとAndroidのモバイルアプリ、Slack・Notion・Google Calendarとの連携が可能になります。まずは無料プランで使い心地をご確認ください。
+          </p>
+        </div>
+      </li>
+
+      <!-- Item 2 -->
+      <li class="faq-item reveal delay-2">
+        <div class="faq-item__header" role="button" tabindex="0" aria-expanded="false">
+          <span class="faq-item__question">クレジットカードなしで始められますか？</span>
+          <span class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="faq-item__body" role="region">
+          <p class="faq-item__answer">
+            はい、無料プランはクレジットカード不要でご利用いただけます。メールアドレスだけで今すぐ登録でき、2分以内に使い始めることができます。有料プランへのアップグレードは、いつでも任意のタイミングで行えます。
+          </p>
+        </div>
+      </li>
+
+      <!-- Item 3 -->
+      <li class="faq-item reveal delay-3">
+        <div class="faq-item__header" role="button" tabindex="0" aria-expanded="false">
+          <span class="faq-item__question">既存のタスク管理ツールからデータを移行できますか？</span>
+          <span class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="faq-item__body" role="region">
+          <p class="faq-item__answer">
+            Todoist、Asana、Notion、Trelloからのインポートに対応しています。CSV形式でのインポートにも対応しているため、ほぼすべてのツールからのデータ移行が可能です。移行ウィザードに従うだけで、10分以内にデータ移行を完了できます。
+          </p>
+        </div>
+      </li>
+
+      <!-- Item 4 -->
+      <li class="faq-item reveal delay-4">
+        <div class="faq-item__header" role="button" tabindex="0" aria-expanded="false">
+          <span class="faq-item__question">入力したデータのプライバシーは守られますか？</span>
+          <span class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="faq-item__body" role="region">
+          <p class="faq-item__answer">
+            お客様のデータはAWSの日本リージョンで保管・処理されており、業界標準の256bit AES暗号化を採用しています。AIの学習にお客様のデータを使用することはありません。SOC 2 Type IIおよびGDPR準拠の体制を整えており、企業・フリーランス問わず安心してご利用いただけます。
+          </p>
+        </div>
+      </li>
+
+      <!-- Item 5 -->
+      <li class="faq-item reveal delay-5">
+        <div class="faq-item__header" role="button" tabindex="0" aria-expanded="false">
+          <span class="faq-item__question">解約はいつでもできますか？</span>
+          <span class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="faq-item__body" role="region">
+          <p class="faq-item__answer">
+            はい、月払いプランはいつでも解約可能で、解約月末まで引き続きご利用いただけます。年払いプランも途中解約は可能ですが、残期間の返金対応は原則行っておりません。なお、解約後もデータは30日間保持されますので、再開や他ツールへのエクスポートが行えます。
+          </p>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CTA BANNER
+============================================================ -->
+<section class="cta-banner" aria-labelledby="cta-title">
+  <div class="cta-banner__inner">
+    <h2 class="cta-banner__title" id="cta-title">今すぐ、思考を解放しよう。</h2>
+    <p class="cta-banner__sub">2分で登録完了。クレジットカード不要。あなたのAI秘書が今日から動き出します。</p>
+    <a href="#pricing" class="cta-banner__btn">
+      無料で始める →
+    </a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+
+    <div class="footer__top">
+
+      <!-- Brand column -->
+      <div class="footer__brand">
+        <a href="#" class="footer__logo" aria-label="NextFlow AI トップへ">
+          <div class="footer__logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          NextFlow AI
+        </a>
+        <p class="footer__tagline">
+          思考を止めない、タスク管理。<br>AIがあなたの専属秘書に。
+        </p>
+        <div class="footer__socials" aria-label="ソーシャルメディア">
+          <a href="#" class="footer__social-btn" aria-label="Twitter/X">𝕏</a>
+          <a href="#" class="footer__social-btn" aria-label="GitHub">⌥</a>
+          <a href="#" class="footer__social-btn" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <!-- Product column -->
+      <div>
+        <p class="footer__col-title">プロダクト</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="#features" class="footer__col-link">機能</a></li>
+          <li><a href="#pricing" class="footer__col-link">料金</a></li>
+          <li><a href="#" class="footer__col-link">ロードマップ</a></li>
+          <li><a href="#" class="footer__col-link">変更履歴</a></li>
+        </ul>
+      </div>
+
+      <!-- Company column -->
+      <div>
+        <p class="footer__col-title">会社</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="#" class="footer__col-link">About</a></li>
+          <li><a href="#" class="footer__col-link">Blog</a></li>
+          <li><a href="#" class="footer__col-link">採用情報</a></li>
+          <li><a href="#" class="footer__col-link">お問い合わせ</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal column -->
+      <div>
+        <p class="footer__col-title">サポート</p>
+        <ul class="footer__col-links" role="list">
+          <li><a href="#faq" class="footer__col-link">FAQ</a></li>
+          <li><a href="#" class="footer__col-link">ドキュメント</a></li>
+          <li><a href="#" class="footer__col-link">ステータス</a></li>
+          <li><a href="#" class="footer__col-link">API</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 NextFlow AI, Inc. All rights reserved.</p>
+      <nav class="footer__legal" aria-label="法的情報">
+        <a href="#" class="footer__legal-link">プライバシーポリシー</a>
+        <a href="#" class="footer__legal-link">利用規約</a>
+        <a href="#" class="footer__legal-link">特定商取引法</a>
+      </nav>
+    </div>
+
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

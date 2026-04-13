@@ -1,0 +1,144 @@
+// ============================================================
+// FAQ Section
+// ============================================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.faq {
+  @include section-padding;
+  background: linear-gradient(180deg, $color-bg 0%, rgba(#EBF5FF, 0.3) 100%);
+  transition: background 0.4s ease;
+
+  .dark & {
+    background: linear-gradient(180deg, $color-bg-dark 0%, rgba(#081224, 0.8) 100%);
+  }
+
+  &__inner {
+    @include container;
+    max-width: 800px;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $space-12;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+  }
+}
+
+// ============================================================
+// Accordion Item
+// ============================================================
+
+.faq-item {
+  border-radius: $radius-xl;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  overflow: hidden;
+  transition: box-shadow $transition-base, border-color $transition-base;
+
+  &.reveal {
+    @include reveal-init;
+
+    &.is-visible {
+      @include reveal-active;
+    }
+  }
+
+  .dark & {
+    background: $color-bg-card-dark;
+    border-color: $color-border-dark;
+  }
+
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: rgba($color-primary, 0.3);
+  }
+
+  &.active {
+    box-shadow: $shadow-md;
+    border-color: rgba($color-primary, 0.4);
+  }
+
+  &__header {
+    @include flex-between;
+    padding: $space-6;
+    cursor: pointer;
+    user-select: none;
+    gap: $space-4;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: -2px;
+    }
+  }
+
+  &__question {
+    font-size: $fs-base;
+    font-weight: $fw-semibold;
+    line-height: 1.5;
+    color: $color-text;
+    flex: 1;
+
+    .dark & {
+      color: $color-text-dark;
+    }
+  }
+
+  &__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba($color-primary, 0.10);
+    @include flex-center;
+    flex-shrink: 0;
+    transition: transform $transition-slow, background $transition-base;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      color: $color-primary;
+      transition: transform $transition-slow;
+    }
+  }
+
+  &.active &__icon {
+    background: $color-primary;
+    transform: rotate(0deg);
+
+    svg {
+      color: #fff;
+      transform: rotate(45deg);
+    }
+  }
+
+  &__body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  &.active &__body {
+    max-height: 400px;
+  }
+
+  &__answer {
+    padding: 0 $space-6 $space-6;
+    font-size: $fs-base;
+    color: $color-text-sub;
+    line-height: 1.8;
+    border-top: 1px solid $color-border;
+    padding-top: $space-4;
+
+    .dark & {
+      color: $color-text-sub-dark;
+      border-top-color: $color-border-dark;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#007AFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Wand body -->
+  <line x1="15" y1="9" x2="3" y2="21"/>
+  <path d="M17.5 3l-1.5 3 3-1.5z" fill="#007AFF" stroke="none"/>
+  <!-- Sparkle top right -->
+  <path d="M18 2l.5 1.5L20 4l-1.5.5L18 6l-.5-1.5L16 4l1.5-.5z"/>
+  <!-- Sparkle small -->
+  <path d="M21 9l.4 1.2 1.2.4-1.2.4L21 12.4l-.4-1.2-1.2-.4 1.2-.4z"/>
+  <!-- Stars on wand -->
+  <circle cx="12" cy="12" r="1" fill="#007AFF" stroke="none"/>
+  <!-- Lines indicating magic -->
+  <line x1="19" y1="13" x2="21" y2="15"/>
+  <line x1="14" y1="5" x2="16" y2="3"/>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "name": "next-flow",
+  "version": "1.0.0",
+  "description": "NextFlow AI Landing Page",
+  "scripts": {
+    "sass": "sass scss/style.scss css/style.css --style=compressed",
+    "sass:watch": "sass scss/style.scss css/style.css --watch",
+    "dev": "sass scss/style.scss css/style.css --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

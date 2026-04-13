@@ -1,0 +1,343 @@
+// ============================================================
+// Efficiency Section
+// ============================================================
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.efficiency {
+  @include section-padding;
+  background: linear-gradient(180deg, $color-bg 0%, rgba(#EBF5FF, 0.5) 100%);
+  transition: background 0.4s ease;
+
+  .dark & {
+    background: linear-gradient(180deg, $color-bg-dark 0%, rgba(#0A1628, 0.8) 100%);
+  }
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $space-16;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-12;
+    align-items: center;
+
+    @include mq(lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // --- Left: Stats ---
+  &__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-5;
+  }
+
+  &__stat-card {
+    @include card;
+    padding: $space-6;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &.reveal {
+      @include reveal-init;
+
+      &.is-visible {
+        @include reveal-active;
+      }
+    }
+
+    .dark & {
+      background: $color-bg-card-dark;
+      border-color: $color-border-dark;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-lg;
+    }
+
+    // Background glow
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba($color-primary, 0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    &--accent::after {
+      background: radial-gradient(circle, rgba($color-accent-start, 0.10) 0%, transparent 70%);
+    }
+  }
+
+  &__stat-number {
+    font-size: $fs-4xl;
+    font-weight: $fw-bold;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: $space-2;
+
+    @include gradient-text;
+
+    &--accent {
+      @include gradient-text(linear-gradient(135deg, $color-accent-start 0%, $color-accent-end 100%));
+    }
+  }
+
+  &__stat-label {
+    font-size: $fs-sm;
+    color: $color-text-sub;
+    font-weight: $fw-medium;
+    line-height: 1.4;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+  }
+
+  // --- Right: Chart / Description ---
+  &__content {
+    &.reveal {
+      @include reveal-init;
+      transform: translateX(40px);
+
+      &.is-visible {
+        @include reveal-active;
+        transform: translateX(0);
+      }
+    }
+  }
+
+  &__tagline {
+    font-size: $fs-3xl;
+    font-weight: $fw-bold;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: $space-6;
+
+    .dark & {
+      color: $color-text-dark;
+    }
+
+    @include mq(md) {
+      font-size: $fs-2xl;
+    }
+
+    span {
+      @include gradient-text;
+    }
+  }
+
+  &__desc {
+    font-size: $fs-base;
+    color: $color-text-sub;
+    line-height: 1.8;
+    margin-bottom: $space-8;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-4;
+  }
+
+  &__item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: $radius-lg;
+    @include flex-center;
+    flex-shrink: 0;
+
+    img {
+      width: 18px;
+      height: 18px;
+      display: block;
+      object-fit: contain;
+    }
+
+    &--blue   { background: rgba($color-primary, 0.10); }
+    &--purple { background: rgba($color-accent-start, 0.10); }
+    &--teal   { background: rgba(#0AB5A8, 0.10); }
+  }
+
+  &__item-text {
+    flex: 1;
+  }
+
+  &__item-title {
+    font-size: $fs-base;
+    font-weight: $fw-semibold;
+    margin-bottom: $space-1;
+
+    .dark & {
+      color: $color-text-dark;
+    }
+  }
+
+  &__item-desc {
+    font-size: $fs-sm;
+    color: $color-text-sub;
+    line-height: 1.6;
+
+    .dark & {
+      color: $color-text-sub-dark;
+    }
+  }
+
+  // --- Horizontal bar chart ---
+  &__chart {
+    margin-top: $space-8;
+    padding: $space-6;
+    background: $color-bg-card;
+    border: 1px solid $color-border;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-md;
+
+    .dark & {
+      background: $color-bg-card-dark;
+      border-color: $color-border-dark;
+    }
+
+    &-title {
+      font-size: $fs-sm;
+      font-weight: $fw-semibold;
+      color: $color-text-sub;
+      margin-bottom: $space-5;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+
+      .dark & {
+        color: $color-text-sub-dark;
+      }
+    }
+
+    // --- Horizontal rows ---
+    &-rows {
+      display: flex;
+      flex-direction: column;
+      gap: $space-4;
+    }
+
+    &-row {
+      display: grid;
+      grid-template-columns: 52px 1fr 36px;
+      align-items: center;
+      gap: $space-3;
+    }
+
+    &-row-label {
+      font-size: $fs-xs;
+      font-weight: $fw-semibold;
+      color: $color-text-sub;
+      text-align: right;
+      white-space: nowrap;
+
+      .dark & {
+        color: $color-text-sub-dark;
+      }
+    }
+
+    &-row-track {
+      height: 20px;
+      background: rgba($color-text-sub, 0.08);
+      border-radius: $radius-full;
+      overflow: hidden;
+
+      .dark & {
+        background: rgba(#fff, 0.06);
+      }
+    }
+
+    &-row-bar {
+      height: 100%;
+      border-radius: $radius-full;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+
+      &--before {
+        background: rgba($color-text-sub, 0.30);
+
+        &.animated { width: 100%; }
+      }
+
+      &--after {
+        background: $color-gradient-btn;
+        background-size: 200% auto;
+
+        &.animated { width: 37.5%; }
+      }
+    }
+
+    &-row-value {
+      font-size: $fs-sm;
+      font-weight: $fw-bold;
+      color: $color-text-sub;
+      text-align: left;
+
+      .dark & {
+        color: $color-text-sub-dark;
+      }
+
+      &--accent {
+        color: $color-primary;
+
+        .dark & {
+          color: $color-primary;
+        }
+      }
+    }
+
+    // --- Reduction note ---
+    &-note {
+      display: flex;
+      align-items: center;
+      gap: $space-3;
+      margin-top: $space-5;
+      padding-top: $space-4;
+      border-top: 1px solid $color-border;
+      font-size: $fs-xs;
+      color: $color-text-sub;
+
+      .dark & {
+        border-top-color: $color-border-dark;
+        color: $color-text-sub-dark;
+      }
+
+      &-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px $space-3;
+        border-radius: $radius-full;
+        background: rgba(#10B981, 0.12);
+        color: #10B981;
+        font-weight: $fw-bold;
+        font-size: $fs-xs;
+        white-space: nowrap;
+      }
+    }
+  }
+}
